@@ -1,27 +1,23 @@
-import Link from "next/link";
-import { draftMode } from "next/headers";
+import { draftMode } from 'next/headers';
+import Link from 'next/link';
 
-import MoreStories from "../../more-stories";
-import Avatar from "../../avatar";
-import Date from "../../date";
-import CoverImage from "../../cover-image";
+import { getAllPosts, getPostAndMorePosts } from '@/lib/api';
+import { Markdown } from '@/lib/markdown';
 
-import { Markdown } from "@/lib/markdown";
-import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
+import Avatar from '../../avatar';
+import CoverImage from '../../cover-image';
+import Date from '../../date';
+import MoreStories from '../../more-stories';
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);
 
-  return allPosts.map((post) => ({
+  return allPosts.map(post => ({
     slug: post.slug,
   }));
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
   const { isEnabled } = draftMode();
   const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
 
@@ -42,18 +38,14 @@ export default async function PostPage({
           {post.title}
         </h1>
         <div className="hidden md:mb-12 md:block">
-          {post.author && (
-            <Avatar name={post.author.name} picture={post.author.picture} />
-          )}
+          {post.author && <Avatar name={post.author.name} picture={post.author.picture} />}
         </div>
         <div className="mb-8 sm:mx-0 md:mb-16">
           <CoverImage title={post.title} url={post.coverImage.url} />
         </div>
         <div className="mx-auto max-w-2xl">
           <div className="mb-6 block md:hidden">
-            {post.author && (
-              <Avatar name={post.author.name} picture={post.author.picture} />
-            )}
+            {post.author && <Avatar name={post.author.name} picture={post.author.picture} />}
           </div>
           <div className="mb-6 text-lg">
             <Date dateString={post.date} />
@@ -66,7 +58,7 @@ export default async function PostPage({
           </div>
         </div>
       </article>
-      <hr className="border-accent-2 mt-28 mb-24" />
+      <hr className="border-accent-2 mb-24 mt-28" />
       <MoreStories morePosts={morePosts} />
     </div>
   );

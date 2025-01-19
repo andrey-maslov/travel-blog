@@ -58,8 +58,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -69,8 +68,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -82,12 +80,7 @@
           "required": true,
           "validations": [
             {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code"
-              ],
+              "enabledMarks": ["bold", "italic", "underline", "code"],
               "message": "Only bold, italic, underline, and code marks are allowed"
             },
             {
@@ -165,8 +158,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -176,8 +168,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -188,8 +179,7 @@
           "type": "Date",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -201,9 +191,7 @@
           "required": true,
           "validations": [
             {
-              "linkContentType": [
-                "author"
-              ]
+              "linkContentType": ["author"]
             }
           ],
           "disabled": false,
@@ -270,8 +258,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -281,8 +268,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -290,8 +276,7 @@
       ]
     }
   ],
-  "tags": [
-  ],
+  "tags": [],
   "editorInterfaces": [
     {
       "sys": {
@@ -434,10 +419,8 @@
   "entries": [
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -489,8 +472,7 @@
             "en-US": "published"
           }
         },
-        "automationTags": [
-        ],
+        "automationTags": [],
         "contentType": {
           "sys": {
             "type": "Link",
@@ -509,18 +491,14 @@
         },
         "content": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Это будет рассказ про мое первое серьезное путешествие во Францию.",
                     "nodeType": "text"
                   }
@@ -528,14 +506,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Мы ехали на автобусе 4 дня в одну сторону.",
                     "nodeType": "text"
                   }
@@ -574,10 +549,8 @@
     },
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -629,8 +602,7 @@
             "en-US": "published"
           }
         },
-        "automationTags": [
-        ],
+        "automationTags": [],
         "contentType": {
           "sys": {
             "type": "Link",
@@ -657,10 +629,8 @@
     },
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -712,8 +682,7 @@
             "en-US": "published"
           }
         },
-        "automationTags": [
-        ],
+        "automationTags": [],
         "contentType": {
           "sys": {
             "type": "Link",
@@ -732,18 +701,14 @@
         },
         "content": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Humanoide Roboter sind eine Art von Robotern in Form und Funktion einem Menschen nachempfunden. Diese Roboter sind seit Jahrzehnten ein fester Bestandteil der Science-Fiction, aber in den letzten Jahren haben sie begonnen, Realität zu werden. Eine der spannendsten Entwicklungen im Bereich der humanoiden Robotik ist der zunehmende Einsatz von künstlicher Intelligenz und maschinellem Lernen. Diese Technologien ermöglichen es humanoiden Robotern, zu lernen und sich anzupassen, wodurch sie in der Lage sind, eine Vielzahl von Aufgaben auszuführen. Einige humanoide Roboter können beispielsweise bei Aufgaben im Haushalt wie Kochen und Putzen helfen, während andere für den Einsatz im Gesundheitswesen und im Bildungswesen entwickelt werden.",
                     "nodeType": "text"
                   }
@@ -784,10 +749,8 @@
   "assets": [
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -866,10 +829,8 @@
     },
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -948,10 +909,8 @@
     },
     {
       "metadata": {
-        "tags": [
-        ],
-        "concepts": [
-        ]
+        "tags": [],
+        "concepts": []
       },
       "sys": {
         "space": {
@@ -1076,8 +1035,7 @@
       }
     }
   ],
-  "webhooks": [
-  ],
+  "webhooks": [],
   "roles": [
     {
       "name": "Editor",
@@ -1117,19 +1075,12 @@
         }
       ],
       "permissions": {
-        "ContentModel": [
-          "read"
-        ],
-        "Settings": [
-        ],
-        "ContentDelivery": [
-        ],
-        "Environments": [
-        ],
-        "EnvironmentAliases": [
-        ],
-        "Tags": [
-        ]
+        "ContentModel": ["read"],
+        "Settings": [],
+        "ContentDelivery": [],
+        "Environments": [],
+        "EnvironmentAliases": [],
+        "Tags": []
       },
       "sys": {
         "type": "Role",
