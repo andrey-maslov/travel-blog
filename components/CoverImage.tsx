@@ -6,15 +6,13 @@ function cn(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function CoverImage({
-  title,
-  url,
-  slug,
-}: {
+interface Props {
   title: string;
   url: string;
   slug?: string;
-}) {
+}
+
+export default function CoverImage({ title, url, slug }: Props) {
   const image = (
     <ContentfulImage
       alt={`Cover Image for ${title}`}

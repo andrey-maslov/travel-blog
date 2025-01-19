@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { getAllPosts, getPostAndMorePosts } from '@/lib/api';
 import { Markdown } from '@/lib/markdown';
 
-import Avatar from '../../avatar';
-import CoverImage from '../../cover-image';
-import Date from '../../date';
-import MoreStories from '../../more-stories';
+import Avatar from '../../../components/Avatar';
+import CoverImage from '../../../components/CoverImage';
+import Date from '../../../components/DateComponent';
+import MoreStories from '../../../components/MoreStories';
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);

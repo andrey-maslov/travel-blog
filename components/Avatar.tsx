@@ -1,6 +1,8 @@
 import ContentfulImage from '@/lib/contentful-image';
 
-export default function Avatar({ name, picture }: { name: string; picture: any }) {
+interface Props { name: string; picture: any }
+
+export default function Avatar({ name, picture }: Props) {
   return (
     <div className="flex items-center">
       <div className="mr-4 h-12 w-12">
