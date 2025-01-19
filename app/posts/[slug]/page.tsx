@@ -25,6 +25,10 @@ export default async function PostPage({
   const { isEnabled } = draftMode();
   const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
 
+  if (!post) {
+    return null;
+  }
+
   return (
     <div className="container mx-auto px-5">
       <h2 className="mb-20 mt-8 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
