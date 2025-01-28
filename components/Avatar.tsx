@@ -1,4 +1,4 @@
-import ContentfulImage from '@/lib/contentful-image';
+import ContentfulImage from '@/components/ContentfulImage';
 
 interface Props { name: string; picture: any }
 

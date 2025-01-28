@@ -2,6 +2,7 @@ import { TypePost } from '@/types/contentful';
 import { Post } from '@/types/types';
 
 export const transformPost = (entry: TypePost): Post => {
+
   return {
     slug: entry.fields.slug,
     title: entry.fields.title,

@@ -46,6 +46,8 @@ export async function getPostAndMorePosts(
     ...(preview && { 'sys.revision[gt]': 0 }),
   } as QueryParams);
 
+  console.log('JSON.stringify(post, null, 2)');
+
   return {
     post,
     morePosts: morePostsResponse.items.map(transformPost),

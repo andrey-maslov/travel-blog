@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export type Post = {
   slug: string;
   title: string;
@@ -10,5 +12,5 @@ export type Post = {
     picture: string;
   };
   excerpt: string;
-  content: any; // TODO replace by the proper type
+  content: Document; // TODO replace by the proper type
 };

@@ -1,13 +1,17 @@
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
-import { getAllPosts, getPostAndMorePosts } from '@/lib/api';
-import { Markdown } from '@/lib/markdown';
+import {ArticleContent} from "@/components/features/article/ArticleContent";
+import {getAllPosts, getPostAndMorePosts, getPostBySlug} from '@/lib/api';
 
 import Avatar from '../../../components/Avatar';
 import CoverImage from '../../../components/CoverImage';
 import Date from '../../../components/DateComponent';
 import MoreStories from '../../../components/MoreStories';
+
+type MetadataProps = {
+  params: Promise<{ slug: string }>;
+};
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);
@@ -15,6 +19,16 @@ export async function generateStaticParams() {
   return allPosts.map(post => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }: MetadataProps) {
+  const slug = (await params).slug;
+
+  const post = await getPostBySlug(slug);
+
+  return {
+    title: post?.title,
+  };
 }
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
@@ -29,12 +43,11 @@ export default async function PostPage({ params }: { params: { slug: string } })
     <div className="container mx-auto px-5">
       <h2 className="mb-20 mt-8 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
         <Link href="/" className="hover:underline">
-          Blog
+          blog.tripplanr
         </Link>
-        .
       </h2>
       <article>
-        <h1 className="mb-12 text-center text-6xl font-bold leading-tight tracking-tighter md:text-left md:text-7xl md:leading-none lg:text-8xl">
+        <h1 className="mb-12 text-center text-4xl font-bold leading-tight tracking-tighter md:text-left md:text-5xl md:leading-none lg:text-6xl">
           {post.title}
         </h1>
         <div className="hidden md:mb-12 md:block">
@@ -54,7 +67,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         <div className="mx-auto max-w-2xl">
           <div className="prose">
-            <Markdown content={post.content} />
+            <ArticleContent article={post.content} />
           </div>
         </div>
       </article>

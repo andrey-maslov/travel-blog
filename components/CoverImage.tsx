@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ContentfulImage from '../lib/contentful-image';
+import ContentfulImage from './ContentfulImage';
 
 function cn(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -19,7 +19,7 @@ export default function CoverImage({ title, url, slug }: Props) {
       priority
       width={2000}
       height={1000}
-      className={cn('shadow-small', {
+      className={cn('shadow-xl rounded-2xl', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
       src={url}

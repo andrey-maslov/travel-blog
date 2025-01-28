@@ -1,9 +1,18 @@
+import {Metadata} from "next";
 import { draftMode } from 'next/headers';
 
-import { getAllPosts } from '@/lib/api';
-import MoreStories from '../components/MoreStories';
 import { HeroPost } from '@/components/HeroPost';
 import { Intro } from '@/components/Intro';
+import { getAllPosts } from '@/lib/api';
+
+import MoreStories from '../components/MoreStories';
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: "Как путешествовать дешево и сердито - blog.tripplanr",
+        description: "Блог об организации самостоятельных путешествий",
+    };
+}
 
 export default async function Page() {
   const { isEnabled } = draftMode();
