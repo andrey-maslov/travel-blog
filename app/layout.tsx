@@ -5,8 +5,16 @@ import { CMS_NAME } from '@/lib/constants';
 import { Footer } from '@/components/Footer';
 
 export const metadata = {
-  title: `Next.js and ${CMS_NAME} Example`,
-  description: `This is a blog built with Next.js and ${CMS_NAME}.`,
+  title: "",
+  description: "",
+  verification: {
+    google: '3xFLRhuHLISlf9kRNyiZj6pcyb1PQ7r2vbdt_X-RXpA',
+    // yandex: 'yandex',
+    // yahoo: 'yahoo',
+    // other: {
+    //   me: ['my-email', 'my-link'],
+    // },
+  },
 };
 
 const inter = Inter({
