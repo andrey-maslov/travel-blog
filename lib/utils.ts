@@ -9,6 +9,7 @@ export const transformPost = (entry: TypePost): Post => {
     coverImage: {
       url: entry.fields.coverImage?.fields?.file?.url?.toString() ?? '',
     },
+    seoDescription: entry.fields.seoDescription,
     date: entry.fields.date,
     author: {
       name: entry.fields.author.fields.name,
@@ -18,3 +19,7 @@ export const transformPost = (entry: TypePost): Post => {
     content: entry.fields.content,
   };
 };
+
+
+export const normalizeUrl = (url: string): string =>
+  url.startsWith('//') ? `https:${url}` : url;

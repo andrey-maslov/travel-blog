@@ -19,7 +19,7 @@ export default function CoverImage({ title, url, slug }: Props) {
       priority
       width={2000}
       height={1000}
-      className={cn('shadow-xl rounded-2xl', {
+      className={cn('rounded-md shadow-xl', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
       src={url}

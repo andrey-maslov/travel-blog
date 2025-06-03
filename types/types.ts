@@ -6,6 +6,7 @@ export type Post = {
   coverImage: {
     url: string;
   };
+  seoDescription: string;
   date: string;
   author: {
     name: string;

@@ -12,6 +12,7 @@ export interface TypePostFields {
   date: EntryFields.Date;
   author: { fields: TypeAuthorFields; metadata: Record<string, string>, sys: Record<string, string> };
   fields: []; // added manually
+  seoDescription: string;
 }
 
 export type TypePost = {

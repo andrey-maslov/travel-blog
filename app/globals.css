@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 html {
-    font-size: 18px;
+  font-size: 16px;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
 }
 
 .prose {
-    max-width: none;
+  max-width: none;
 }

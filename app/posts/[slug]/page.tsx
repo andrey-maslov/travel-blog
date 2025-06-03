@@ -1,10 +1,9 @@
 import { draftMode } from 'next/headers';
-import Link from 'next/link';
 
 import { ArticleContent } from '@/components/features/article/ArticleContent';
 import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/lib/api';
+import { normalizeUrl } from '@/lib/utils';
 
-import Avatar from '../../../components/Avatar';
 import CoverImage from '../../../components/CoverImage';
 import Date from '../../../components/DateComponent';
 import MoreStories from '../../../components/MoreStories';
@@ -23,11 +22,25 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: MetadataProps) {
   const slug = (await params).slug;
-
   const post = await getPostBySlug(slug);
 
+  if (!post) return {};
+
   return {
-    title: post?.title,
+    title: post.title,
+    description: post.seoDescription || post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.seoDescription || post.excerpt,
+      images: [
+        {
+          url: post.coverImage?.url ? normalizeUrl(post.coverImage.url) : '/default-og-image.jpg',
+          alt: post.title,
+        },
+      ],
+      type: 'article',
+      url: `https://blog.tripplanr.io/posts/${slug}`,
+    },
   };
 }
 
@@ -39,13 +52,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
     return null;
   }
 
+  console.log(post.coverImage?.url);
+
   return (
     <div className="mx-auto max-w-5xl px-5">
-      <h2 className="mb-20 mt-8 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
-        <Link href="/" className="hover:underline">
-          blog.tripplanr
-        </Link>
-      </h2>
       <article>
         <h1 className="mb-12 text-center text-4xl font-bold leading-tight tracking-tighter md:text-left md:text-5xl md:leading-none lg:text-6xl">
           {post.title}

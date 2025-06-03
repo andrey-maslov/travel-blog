@@ -1,6 +1,9 @@
 import ContentfulImage from '@/components/ContentfulImage';
 
-interface Props { name: string; picture: any }
+interface Props {
+  name: string;
+  picture: any;
+}
 
 export default function Avatar({ name, picture }: Props) {
   return (

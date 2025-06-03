@@ -1,4 +1,4 @@
-import {Metadata} from "next";
+import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 
 import { HeroPost } from '@/components/HeroPost';
@@ -8,10 +8,10 @@ import { getAllPosts } from '@/lib/api';
 import MoreStories from '../components/MoreStories';
 
 export async function generateMetadata(): Promise<Metadata> {
-    return {
-        title: "Как путешествовать дешево и сердито - blog.tripplanr",
-        description: "Блог об организации самостоятельных путешествий",
-    };
+  return {
+    title: 'Как путешествовать дешево и сердито - blog.tripplanr',
+    description: 'Блог об организации самостоятельных путешествий',
+  };
 }
 
 export default async function Page() {
@@ -21,7 +21,7 @@ export default async function Page() {
   const morePosts = allPosts.slice(1);
 
   return (
-    <div className="max-w-5xl mx-auto px-5">
+    <div className="mx-auto max-w-5xl px-5">
       <Intro />
       {heroPost && (
         <HeroPost

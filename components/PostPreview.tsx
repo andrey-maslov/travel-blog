@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import Avatar from '@/components/Avatar';
 import CoverImage from '@/components/CoverImage';
 import DateComponent from '@/components/DateComponent';
 
@@ -19,7 +18,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
       <div className="mb-5">
         <CoverImage title={title} slug={slug} url={coverImage.url} />
       </div>
-      <h3 className="mb-3 text-2xl leading-1 font-bold">
+      <h3 className="leading-1 mb-3 text-2xl font-bold">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>
@@ -27,7 +26,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
       <div className="mb-4">
         <DateComponent dateString={date} />
       </div>
-      <p className="mb-4 leading-relaxed text-md">{excerpt}</p>
+      <p className="text-md mb-4 leading-relaxed">{excerpt}</p>
       {/*{author && <Avatar name={author.name} picture={author.picture} />}*/}
     </div>
   );
