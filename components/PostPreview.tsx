@@ -19,16 +19,16 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
       <div className="mb-5">
         <CoverImage title={title} slug={slug} url={coverImage.url} />
       </div>
-      <h3 className="mb-3 text-3xl leading-snug">
+      <h3 className="mb-3 text-2xl leading-1 font-bold">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>
       </h3>
-      <div className="mb-4 text-lg">
+      <div className="mb-4">
         <DateComponent dateString={date} />
       </div>
-      <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
-      {author && <Avatar name={author.name} picture={author.picture} />}
+      <p className="mb-4 leading-relaxed text-md">{excerpt}</p>
+      {/*{author && <Avatar name={author.name} picture={author.picture} />}*/}
     </div>
   );
 }

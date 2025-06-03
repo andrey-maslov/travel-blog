@@ -1,7 +1,16 @@
 import { format } from 'date-fns';
+import enUS from 'date-fns/locale/en-US';
+import ru from 'date-fns/locale/ru';
 
-interface Props { dateString: string }
+interface Props { dateString: string; locale?: 'en' | 'ru'; }
 
-export default function DateComponent({ dateString }: Props) {
-  return <time dateTime={dateString}>{format(new Date(dateString), 'LLLL	d, yyyy')}</time>;
+export default function DateComponent({ dateString, locale = 'ru' }: Props) {
+  const localeObj = locale === 'ru' ? ru : enUS;
+  return (
+    <div className="text-gray-400 font-light">
+      <time dateTime={dateString}>
+        Опубликовано {format(new Date(dateString), 'd MMMM yyyy', { locale: localeObj })}
+      </time>
+    </div>
+  );
 }

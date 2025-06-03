@@ -1,10 +1,8 @@
 'use client';
+import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { Document } from '@contentful/rich-text-types';
-import {
-  useContentfulInspectorMode,
-} from '@contentful/live-preview/react';
 
-import {CtfRichText} from "@/components/features/contentful/CtfRichText";
+import { CtfRichText } from '@/components/features/contentful/CtfRichText';
 
 interface ArticleContentProps {
   article: Document;

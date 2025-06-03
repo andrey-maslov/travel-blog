@@ -1,12 +1,12 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
-import { CMS_NAME } from '@/lib/constants';
 import { Footer } from '@/components/Footer';
+import { CMS_NAME } from '@/lib/constants';
 
 export const metadata = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
   verification: {
     google: '3xFLRhuHLISlf9kRNyiZj6pcyb1PQ7r2vbdt_X-RXpA',
     // yandex: 'yandex',
@@ -19,7 +19,7 @@ export const metadata = {
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   display: 'swap',
 });
 

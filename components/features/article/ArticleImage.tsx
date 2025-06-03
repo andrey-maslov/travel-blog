@@ -13,6 +13,7 @@ interface ArticleImageProps {
 
 export const ArticleImage = ({ image }: ArticleImageProps) => {
   const inspectorProps = useContentfulInspectorMode({ entryId: image.sys.id });
+
   return image.image ? (
     <figure>
       <div className="flex justify-center" {...inspectorProps({ fieldId: 'image' })}>
@@ -22,7 +23,7 @@ export const ArticleImage = ({ image }: ArticleImageProps) => {
               'mt-0 mb-0 ',
               image.fullWidth
                 ? 'md:w-screen md:max-w-[calc(100vw-40px)] md:shrink-0'
-                : 'rounded-2xl border border-gray300 shadow-lg',
+                : 'rounded-md border border-gray300 shadow-lg',
             ),
           }}
           {...image.image}
