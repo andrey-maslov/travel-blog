@@ -52,12 +52,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
     return null;
   }
 
-  console.log(post.coverImage?.url);
-
   return (
-    <div className="mx-auto max-w-5xl px-5">
+    <div className="mx-auto max-w-5xl px-5 py-8">
       <article>
-        <h1 className="mb-12 text-center text-4xl font-bold leading-tight tracking-tighter md:text-left md:text-5xl md:leading-none lg:text-6xl">
+        <h1 className="mb-12 text-4xl font-bold leading-tight tracking-tighter md:text-5xl md:leading-none lg:text-6xl">
           {post.title}
         </h1>
         <div className="mb-6 text-lg">

@@ -9,9 +9,8 @@ import MoreStories from '../components/MoreStories';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Как путешествовать дешево и сердито - blog.tripplanr',
-    description: 'Блог об организации самостоятельных путешествий',
-  };
+    title: 'Блог о путешествиях, местах и маршрутах — blog.tripplanr',
+    description: 'Городские прогулки, маршруты, краеведение и фото из путешествий. Личный блог создателя сервиса tripplanr.io',  };
 }
 
 export default async function Page() {

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 body {
@@ -12,5 +12,6 @@ body {
 }
 
 .prose {
+  font-size: 18px;
   max-width: none;
 }
