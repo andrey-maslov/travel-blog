@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { CMS_NAME } from '@/lib/constants';
+import {PostHogProvider} from "@/app/providers";
 
 export const metadata = {
   title: '',
@@ -29,9 +30,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru" className={inter.variable}>
       <body>
         <div className="min-h-screen">
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <PostHogProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </PostHogProvider>
         </div>
       </body>
     </html>
