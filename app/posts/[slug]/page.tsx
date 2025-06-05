@@ -73,7 +73,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         {/*  </div>*/}
         {/*</div>*/}
 
-        <div className="">
+        <div className="mx-0 lg:mx-6">
           <ArticleContent article={post.content} />
         </div>
       </article>
