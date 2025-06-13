@@ -7,6 +7,7 @@ import { normalizeUrl } from '@/lib/utils';
 import CoverImage from '../../../components/CoverImage';
 import Date from '../../../components/DateComponent';
 import MoreStories from '../../../components/MoreStories';
+import Script from "next/script";
 
 type MetadataProps = {
   params: Promise<{ slug: string }>;
@@ -79,6 +80,33 @@ export default async function PostPage({ params }: { params: { slug: string } })
       </article>
       <hr className="border-accent-2 mb-24 mt-28" />
       <MoreStories morePosts={morePosts} />
+      <Script id="jsonld-article" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://blog.tripplanr.io/posts/${post.slug}`,
+          },
+          "headline": post.title,
+          "description": post.seoDescription || post.excerpt,
+          "image": post.coverImage?.url,
+          "author": {
+            "@type": "Person",
+            "name": post.author?.name || "Tripplanr",
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Tripplanr",
+            // "logo": {
+            //   "@type": "ImageObject",
+            //   "url": "https://blog.tripplanr.io/logo.png"
+            // }
+          },
+          "datePublished": post.date,
+          "dateModified": post.date,
+        })}
+      </Script>
     </div>
   );
 }
