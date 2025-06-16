@@ -12,8 +12,8 @@ export const transformPost = (entry: TypePost): Post => {
     seoDescription: entry.fields.seoDescription,
     date: entry.fields.date,
     author: {
-      name: entry.fields.author.fields.name,
-      picture: entry.fields.author.fields.picture?.fields?.file?.url?.toString() ?? '',
+      name: entry.fields.author?.fields.name,
+      picture: entry.fields.author?.fields?.picture?.fields?.file?.url?.toString() ?? '',
     },
     excerpt: entry.fields.excerpt,
     content: entry.fields.content,
