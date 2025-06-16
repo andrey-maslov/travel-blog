@@ -1,5 +1,5 @@
 import { documentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, Document } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, Document } from '@contentful/rich-text-types';
 
 import { ArticleImage } from '@/components/features/article/ArticleImage';
 import { ComponentRichImage } from '@/types/contentful/generated';
@@ -65,6 +65,14 @@ export const contentfulBaseRichTextOptions = ({ links }: ContentfulRichTextInter
         node.data.target;
 
       return asset ? <EmbeddedAssetAsArticleImage asset={asset} /> : null;
+    },
+    [INLINES.HYPERLINK]: (node, children) => {
+      const url = node.data.uri;
+      return (
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+          {children}
+        </a>
+      );
     },
   },
 });
