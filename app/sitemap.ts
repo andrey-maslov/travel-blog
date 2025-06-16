@@ -30,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://blog.tripplanr.io/posts/kozanov-mikroraion-na-okraine-wroclava',
       lastModified: new Date('2025-06-06'),
       changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://blog.tripplanr.io/posts/karkonosze-pohod-szklarska-karpacz',
+      lastModified: new Date('2025-06-16'),
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
   ]
