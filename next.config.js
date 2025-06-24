@@ -54,10 +54,15 @@ module.exports = withPlugins(plugins, {
    * Settings are the defaults
    */
   images: {
+    domains: ['cdn.sanity.io'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
       },
       {
         protocol: 'https',

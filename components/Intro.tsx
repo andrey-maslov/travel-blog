@@ -1,6 +1,6 @@
 export function Intro() {
   return (
-    <section className="my-8 lg:my-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between">
+    <section className="my-8 flex flex-col items-center md:mb-12 md:flex-row md:justify-between lg:my-16">
       <p className="max-w-lg text-gray-500">
         Блог путешественника — заметки, маршруты, идеи и немного урбанистики и краеведения
       </p>
