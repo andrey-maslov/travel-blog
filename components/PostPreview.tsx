@@ -2,22 +2,31 @@ import Link from 'next/link';
 
 import CoverImage from '@/components/CoverImage';
 import DateComponent from '@/components/DateComponent';
+import { RichSanityImage } from '@/components/SanityImage';
 
 interface Props {
-  title: string;
-  coverImage: any;
-  date: string;
-  excerpt: string;
-  author: any;
-  slug: string;
+  title: string | null;
+  coverImage: RichSanityImage | null;
+  date: string | null;
+  excerpt: string | null;
+  slug: string | null | undefined;
+  author?: any | null;
 }
 
 export function PostPreview({ title, coverImage, date, excerpt, author, slug }: Props) {
   return (
     <div>
-      <div className="mb-5">
-        <CoverImage title={title} slug={slug} url={coverImage.url} />
-      </div>
+      {coverImage && (
+        <div className="mb-5">
+          <CoverImage
+            title={title ?? ''}
+            slug={slug ?? ''}
+            image={coverImage}
+            width={481}
+            height={361}
+          />
+        </div>
+      )}
       <h3 className="leading-1 mb-3 text-2xl font-bold">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}

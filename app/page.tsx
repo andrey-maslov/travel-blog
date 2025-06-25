@@ -1,15 +1,11 @@
 import { Metadata } from 'next';
-import { draftMode } from 'next/headers';
 
 import { HeroPost } from '@/components/HeroPost';
 import { Intro } from '@/components/Intro';
-import { getAllPosts } from '@/lib/api';
+import { RichSanityImage } from '@/components/SanityImage';
+import { getAllPosts } from '@/sanity/lib/queries';
 
 import MoreStories from '../components/MoreStories';
-
-import { client } from '@/sanity/lib/client';
-import { POSTS_QUERY } from '@/sanity/lib/queries';
-import { POSTS_QUERYResult } from '@/sanity/sanity.types';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -20,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const allPosts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+  const allPosts = await getAllPosts();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
 
@@ -37,16 +33,6 @@ export default async function Page() {
     },
   };
 
-  // return (
-  //   <ul>
-  //     {allPosts.map(post => (
-  //       <li key={post._id}>
-  //         <a href={`/posts/${post?.slug?.current}`}>{post?.title}</a>
-  //       </li>
-  //     ))}
-  //   </ul>
-  // );
-
   return (
     <div className="mx-auto max-w-5xl px-5">
       <script
@@ -54,17 +40,17 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Intro />
-      {/*{heroPost && (*/}
-      {/*  <HeroPost*/}
-      {/*    title={heroPost.title}*/}
-      {/*    coverImage={heroPost.coverImage}*/}
-      {/*    date={heroPost.date}*/}
-      {/*    author={heroPost.author}*/}
-      {/*    slug={heroPost.slug}*/}
-      {/*    excerpt={heroPost.excerpt}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*<MoreStories morePosts={morePosts} />*/}
+      {heroPost && (
+        <HeroPost
+          title={heroPost.title}
+          coverImage={heroPost.mainImage as RichSanityImage}
+          date={heroPost.publishedAt}
+          // author={heroPost.author}
+          slug={heroPost.slug?.current}
+          excerpt={heroPost?.excerpt}
+        />
+      )}
+      <MoreStories morePosts={morePosts} />
     </div>
   );
 }

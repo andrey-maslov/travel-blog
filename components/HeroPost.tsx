@@ -1,24 +1,26 @@
 import Link from 'next/link';
 
-import Avatar from '@/components/Avatar';
 import CoverImage from '@/components/CoverImage';
 import Date from '@/components/DateComponent';
+import { RichSanityImage } from '@/components/SanityImage';
 
 interface Props {
-  title: string;
-  coverImage: any;
-  date: string;
-  excerpt: string;
-  author: any;
-  slug: string;
+  title: string | null;
+  coverImage: RichSanityImage | null;
+  date: string | null;
+  excerpt: string | null;
+  slug: string | null | undefined;
+  author?: any | null;
 }
 
-export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Props) {
+export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
   return (
     <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage title={title} slug={slug} url={coverImage.url} />
-      </div>
+      {coverImage && (
+        <div className="mb-8 md:mb-16">
+          <CoverImage title={title ?? ''} slug={slug ?? ''} image={coverImage} width={1107} />
+        </div>
+      )}
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
           <h3 className="mb-4 text-2xl leading-tight lg:text-4xl">

@@ -1,26 +1,45 @@
 'use client';
 
-import { getImageDimensions } from '@sanity/asset-utils';
+import {getImageDimensions, SanityImageCrop, SanityImageHotspot, SanityImageSource} from '@sanity/asset-utils';
 import Image from 'next/image';
 
 import { urlFor } from '@/sanity/lib/sanityImageUrl';
 
-export function SanityImage({ value, isInline }: { value: any; isInline?: boolean }) {
+export type RichSanityImage =  {
+  _type: 'image';
+  asset?: {
+    _ref: string;
+    _type: 'reference';
+  };
+  title?: string;
+  description?: string;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+}
+
+interface Props {
+  value: RichSanityImage;
+  maxWidth?: number;
+  maxHeight?: number;
+  isInline?: boolean
+}
+
+export function SanityImage({ value, maxWidth, maxHeight, isInline }: Props) {
   if (!value?.asset?._ref) return null;
 
-  const { width, height } = getImageDimensions(value);
-  const aspect = width / height;
-  const maxWidth = isInline ? 300 : 800;
+  const { width, height } = getImageDimensions(value as SanityImageSource);
+  // const aspect = width / height;
+  // const maxWidth = isInline ? 300 : 800;
 
   return (
     <figure>
       <div className="flex justify-center">
         <Image
-          loader={({ width: w }) => urlFor(value).width(w).auto('format').url()!}
-          src={urlFor(value).width(maxWidth).auto('format').url()!}
+          loader={({ width }) => urlFor(value).width(maxWidth ?? width).auto('format').url()!}
+          src={urlFor(value).width(maxWidth ?? width).auto('format').url()!}
           alt={value.title || ''}
-          width={width}
-          height={height}
+          width={maxWidth ?? width}
+          height={maxHeight ?? height}
           // sizes={isInline ? '300px' : '(max-width: 800px) 100vw, 800px'}
           className="m-0 rounded-md border border-gray-300 shadow-lg"
           priority={false}

@@ -1,17 +1,15 @@
 import { PortableText } from '@portabletext/react';
-import { errorLog } from 'napi-postinstall/lib/helpers';
-import { draftMode } from 'next/headers';
+// import { errorLog } from 'napi-postinstall/lib/helpers';
+// import { draftMode } from 'next/headers';
 import Script from 'next/script';
 
 import CoverImage from '@/components/CoverImage';
 import Date from '@/components/DateComponent';
 import MoreStories from '@/components/MoreStories';
 import { PortableTextComponents } from '@/components/PortableTextComponents';
-import { normalizeUrl } from '@/lib/utils';
-import { client } from '@/sanity/lib/client';
-import { POST_QUERY, POSTS_QUERY } from '@/sanity/lib/queries';
+import { RichSanityImage } from '@/components/SanityImage';
+import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/sanity/lib/queries';
 import { urlFor } from '@/sanity/lib/sanityImageUrl';
-import { POST_QUERYResult, POSTS_QUERYResult } from '@/sanity/sanity.types';
 
 type MetadataProps = {
   params: { slug: string };
@@ -19,12 +17,11 @@ type MetadataProps = {
 
 export async function generateMetadata({ params }: MetadataProps) {
   const { slug } = params;
-  const post = await client.fetch<POST_QUERYResult>(POST_QUERY, { slug });
+  const post = await getPostBySlug(slug);
+
   if (!post) return {};
 
   const ogImageUrl = post.mainImage ? urlFor(post.mainImage).url() : '/default-og-image.jpg';
-
-  console.log(ogImageUrl);
 
   return {
     title: post.title ?? '',
@@ -34,20 +31,31 @@ export async function generateMetadata({ params }: MetadataProps) {
       description: post.seoDescription ?? post.excerpt ?? '',
       images: [{ url: ogImageUrl, alt: post.title ?? '' }],
       type: 'article',
-      url: `https://your-domain.com/posts/${slug}`,
+      url: `https://blog.tripplanr.io/posts/${slug}`,
     },
   };
 }
 
-export default async function PostPage({ params: { slug } }: { params: { slug: string } }) {
-  const post = await client.fetch<POST_QUERYResult>(POST_QUERY, { slug });
-  const morePosts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+export async function generateStaticParams() {
+  const allPosts = await getAllPosts();
+
+  return allPosts.map(post => ({
+    slug: post.slug?.current,
+  }));
+}
+
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function PostPage({ params: { slug } }: PageProps) {
+  const { post, morePosts } = await getPostAndMorePosts(slug);
 
   if (!post) return <p>Пост не найден</p>;
 
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() || null : null;
-
-  // console.log(imageUrl);
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-8">
@@ -60,7 +68,12 @@ export default async function PostPage({ params: { slug } }: { params: { slug: s
         </div>
         {imageUrl && (
           <div className="mb-8 sm:mx-0 md:mb-16">
-            <CoverImage title={post.title ?? ''} url={imageUrl} />
+            <CoverImage
+              title={post.title ?? ''}
+              image={post.mainImage as RichSanityImage}
+              width={1107}
+              height={665}
+            />
           </div>
         )}
         <div className="prose mx-0 lg:mx-6">
@@ -70,7 +83,7 @@ export default async function PostPage({ params: { slug } }: { params: { slug: s
 
       <hr className="border-accent-2 mb-24 mt-28" />
 
-      {/*{morePosts && morePosts.length > 0 && <MoreStories morePosts={morePosts} />}*/}
+      {morePosts && morePosts.length > 0 && <MoreStories morePosts={morePosts} />}
 
       <Script id="jsonld-article" type="application/ld+json">
         {JSON.stringify({
