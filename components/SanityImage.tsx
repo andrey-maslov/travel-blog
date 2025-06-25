@@ -41,12 +41,12 @@ export function SanityImage({ value, maxWidth, maxHeight, isInline }: Props) {
           width={maxWidth ?? width}
           height={maxHeight ?? height}
           // sizes={isInline ? '300px' : '(max-width: 800px) 100vw, 800px'}
-          className="m-0 rounded-md border border-gray-300 shadow-lg"
+          className="m-0 rounded-md border border-gray-300 shadow-md"
           priority={false}
         />
       </div>
       {value.description && (
-        <figcaption className="mt-2 text-center">{value.description}</figcaption>
+        <figcaption className="mt-2 text-center font-light">{value.description}</figcaption>
       )}
     </figure>
   );

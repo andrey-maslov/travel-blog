@@ -23,7 +23,7 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
       )}
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
-          <h3 className="mb-4 text-2xl leading-tight lg:text-4xl">
+          <h3 className="mb-4 text-2xl font-bold leading-tight lg:text-4xl">
             <Link href={`/posts/${slug}`} className="hover:underline">
               {title}
             </Link>

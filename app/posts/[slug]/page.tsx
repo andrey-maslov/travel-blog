@@ -60,7 +60,7 @@ export default async function PostPage({ params: { slug } }: PageProps) {
   return (
     <div className="mx-auto max-w-5xl px-5 py-8">
       <article>
-        <h1 className="mb-12 text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
+        <h1 className="mb-12 text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
           {post.title}
         </h1>
         <div className="mb-6 text-lg">
