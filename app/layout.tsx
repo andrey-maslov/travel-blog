@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { CMS_NAME } from '@/lib/constants';
+import { CMS_NAME } from '@/sanity/lib/constants';
 import {PostHogProvider} from "@/app/providers";
 
 export const metadata = {
