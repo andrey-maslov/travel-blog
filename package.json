@@ -5,8 +5,7 @@
     "build": "next build",
     "start": "next start",
     "setup": "node ./lib/setup.js",
-    "typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate",
-    "install": "npm install --legacy-peer-deps"
+    "typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.3.4",
@@ -23,7 +22,7 @@
     "groq": "^3.95.0",
     "next": "^15.3.4",
     "next-compose-plugins": "^2.2.1",
-    "next-sanity": "^0.8.5",
+    "next-sanity": "^9.12.0",
     "postcss": "8.5.6",
     "posthog-js": "^1.255.1",
     "react": "^19.1.0",
