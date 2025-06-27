@@ -27,7 +27,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
           />
         </div>
       )}
-      <h3 className="leading-1 mb-3 text-2xl font-bold">
+      <h3 className="leading-tight mb-3 text-2xl font-bold">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>

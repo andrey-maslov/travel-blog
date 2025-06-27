@@ -50,7 +50,7 @@ export default async function Page() {
           excerpt={heroPost?.excerpt}
         />
       )}
-      <hr className="border-accent-2 mb-24 mt-28" />
+      <hr className="border-gray-200 my-12 lg:my-24" />
       <MoreStories morePosts={morePosts} />
     </div>
   );

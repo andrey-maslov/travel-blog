@@ -1,6 +1,6 @@
-import { defineQuery } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
 import { POST_QUERYResult, POSTS_QUERYResult } from '@/sanity/sanity.types';
+import { defineQuery } from 'groq';
 
 export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)][0...12]{
   _id, title, slug, mainImage, excerpt, publishedAt

@@ -12,11 +12,11 @@ import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/sanity/lib/qu
 import { urlFor } from '@/sanity/lib/sanityImageUrl';
 
 type MetadataProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: MetadataProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) return {};
@@ -44,13 +44,12 @@ export async function generateStaticParams() {
   }));
 }
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
-export default async function PostPage({ params: { slug } }: PageProps) {
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params;
   const { post, morePosts } = await getPostAndMorePosts(slug);
 
   if (!post) return <p>Пост не найден</p>;
@@ -81,7 +80,7 @@ export default async function PostPage({ params: { slug } }: PageProps) {
         </div>
       </article>
 
-      <hr className="border-accent-2 mb-24 mt-28" />
+      <hr className="border-gray-200 my-12 lg:my-24" />
 
       {morePosts && morePosts.length > 0 && <MoreStories morePosts={morePosts} />}
 
