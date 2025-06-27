@@ -1,10 +1,9 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
+import { PostHogProvider } from '@/app/providers';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { CMS_NAME } from '@/sanity/lib/constants';
-import {PostHogProvider} from "@/app/providers";
 
 export const metadata = {
   title: '',
