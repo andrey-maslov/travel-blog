@@ -1,8 +1,9 @@
 import { PostPreview } from '@/components/PostPreview';
-import { Post } from '@/types/types';
+import { RichSanityImage } from '@/components/SanityImage';
+import { POSTS_QUERYResult } from '@/sanity/sanity.types';
 
 interface Props {
-  morePosts: Post[];
+  morePosts: POSTS_QUERYResult;
 }
 
 export default function MoreStories({ morePosts }: Props) {
@@ -14,13 +15,13 @@ export default function MoreStories({ morePosts }: Props) {
       <div className="mb-20 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
         {morePosts.map(post => (
           <PostPreview
-            key={post.slug}
+            key={post._id}
             title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
-            slug={post.slug}
-            excerpt={post.excerpt}
+            coverImage={post.mainImage as RichSanityImage}
+            date={post.publishedAt}
+            // author={post}
+            slug={post.slug?.current}
+            excerpt={post?.excerpt}
           />
         ))}
       </div>

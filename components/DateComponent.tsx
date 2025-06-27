@@ -3,11 +3,15 @@ import enUS from 'date-fns/locale/en-US';
 import ru from 'date-fns/locale/ru';
 
 interface Props {
-  dateString: string;
+  dateString: string | null;
   locale?: 'en' | 'ru';
 }
 
 export default function DateComponent({ dateString, locale = 'ru' }: Props) {
+  if (!dateString) {
+    return null;
+  }
+
   const localeObj = locale === 'ru' ? ru : enUS;
   return (
     <div className="font-light text-gray-400">

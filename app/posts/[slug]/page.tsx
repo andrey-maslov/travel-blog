@@ -1,110 +1,102 @@
-import { draftMode } from 'next/headers';
+import { PortableText } from '@portabletext/react';
+// import { errorLog } from 'napi-postinstall/lib/helpers';
+// import { draftMode } from 'next/headers';
+import Script from 'next/script';
 
-import { ArticleContent } from '@/components/features/article/ArticleContent';
-import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/lib/api';
-import { normalizeUrl } from '@/lib/utils';
-
-import CoverImage from '../../../components/CoverImage';
-import Date from '../../../components/DateComponent';
-import MoreStories from '../../../components/MoreStories';
-import Script from "next/script";
+import CoverImage from '@/components/CoverImage';
+import Date from '@/components/DateComponent';
+import MoreStories from '@/components/MoreStories';
+import { PortableTextComponents } from '@/components/PortableTextComponents';
+import { RichSanityImage } from '@/components/SanityImage';
+import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/sanity/lib/queries';
+import { urlFor } from '@/sanity/lib/sanityImageUrl';
 
 type MetadataProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  const allPosts = await getAllPosts(false);
-
-  return allPosts.map(post => ({
-    slug: post.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: MetadataProps) {
-  const slug = (await params).slug;
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) return {};
 
+  const ogImageUrl = post.mainImage ? urlFor(post.mainImage).url() : '/default-og-image.jpg';
+
   return {
-    title: post.title,
-    description: post.seoDescription || post.excerpt,
+    title: post.title ?? '',
+    description: post.seoDescription ?? post.excerpt ?? '',
     openGraph: {
-      title: post.title,
-      description: post.seoDescription || post.excerpt,
-      images: [
-        {
-          url: post.coverImage?.url ? normalizeUrl(post.coverImage.url) : '/default-og-image.jpg',
-          alt: post.title,
-        },
-      ],
+      title: post.title ?? '',
+      description: post.seoDescription ?? post.excerpt ?? '',
+      images: [{ url: ogImageUrl, alt: post.title ?? '' }],
       type: 'article',
       url: `https://blog.tripplanr.io/posts/${slug}`,
     },
   };
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { isEnabled } = draftMode();
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
+export async function generateStaticParams() {
+  const allPosts = await getAllPosts();
 
-  if (!post) {
-    return null;
-  }
+  return allPosts.map(post => ({
+    slug: post.slug?.current,
+  }));
+}
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const { post, morePosts } = await getPostAndMorePosts(slug);
+
+  if (!post) return <p>Пост не найден</p>;
+
+  const imageUrl = post.mainImage ? urlFor(post.mainImage).url() || null : null;
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-8">
       <article>
-        <h1 className="mb-12 text-4xl font-bold leading-tight tracking-tighter md:text-5xl md:leading-none lg:text-6xl">
+        <h1 className="mb-12 text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
           {post.title}
         </h1>
         <div className="mb-6 text-lg">
-          <Date dateString={post.date} />
+          <Date dateString={post.publishedAt ?? ''} />
         </div>
-        {/*<div className="hidden md:mb-12 md:block">*/}
-        {/*  {post.author && <Avatar name={post.author.name} picture={post.author.picture} />}*/}
-        {/*</div>*/}
-        <div className="mb-8 sm:mx-0 md:mb-16">
-          <CoverImage title={post.title} url={post.coverImage.url} />
-        </div>
-        {/*<div className="mx-auto">*/}
-        {/*  <div className="mb-6 block md:hidden">*/}
-        {/*    {post.author && <Avatar name={post.author.name} picture={post.author.picture} />}*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-
-        <div className="mx-0 lg:mx-6">
-          <ArticleContent article={post.content} />
+        {imageUrl && (
+          <div className="mb-8 sm:mx-0 md:mb-16">
+            <CoverImage
+              title={post.title ?? ''}
+              image={post.mainImage as RichSanityImage}
+              width={1107}
+              height={665}
+            />
+          </div>
+        )}
+        <div className="prose mx-0 lg:mx-6">
+          {post.body && <PortableText value={post.body} components={PortableTextComponents} />}
         </div>
       </article>
-      <hr className="border-accent-2 mb-24 mt-28" />
-      <MoreStories morePosts={morePosts} />
+
+      <hr className="border-gray-200 my-12 lg:my-24" />
+
+      {morePosts && morePosts.length > 0 && <MoreStories morePosts={morePosts} />}
+
       <Script id="jsonld-article" type="application/ld+json">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `https://blog.tripplanr.io/posts/${post.slug}`,
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://your-domain.com/posts/${slug}`,
           },
-          "headline": post.title,
-          "description": post.seoDescription || post.excerpt,
-          "image": post.coverImage?.url,
-          "author": {
-            "@type": "Person",
-            "name": post.author?.name || "Tripplanr",
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Tripplanr",
-            // "logo": {
-            //   "@type": "ImageObject",
-            //   "url": "https://blog.tripplanr.io/logo.png"
-            // }
-          },
-          "datePublished": post.date,
-          "dateModified": post.date,
+          headline: post.title,
+          description: post.seoDescription ?? post.excerpt,
+          image: imageUrl,
+          datePublished: post.publishedAt,
+          dateModified: post.publishedAt,
         })}
       </Script>
     </div>

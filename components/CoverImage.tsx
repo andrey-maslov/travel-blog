@@ -1,39 +1,30 @@
 import Link from 'next/link';
 
-import ContentfulImage from './ContentfulImage';
+import { RichSanityImage, SanityImage } from '@/components/SanityImage';
 
-function cn(...classes: any[]) {
-  return classes.filter(Boolean).join(' ');
-}
+// function cn(...classes: any[]) {
+//   return classes.filter(Boolean).join(' ');
+// }
 
 interface Props {
+  image: RichSanityImage;
   title: string;
-  url: string;
   slug?: string;
+  width?: number;
+  height?: number;
 }
 
-export default function CoverImage({ title, url, slug }: Props) {
-  const image = (
-    <ContentfulImage
-      alt={`Cover Image for ${title}`}
-      priority
-      width={2000}
-      height={1000}
-      className={cn('rounded-md shadow-xl', {
-        'hover:shadow-medium transition-shadow duration-200': slug,
-      })}
-      src={url}
-    />
-  );
+export default function CoverImage({ title, image, slug, width, height }: Props) {
+  const img = <SanityImage value={image} maxWidth={width} maxHeight={height} />;
 
   return (
     <div className="sm:mx-0">
       {slug ? (
         <Link href={`/posts/${slug}`} aria-label={title}>
-          {image}
+          {img}
         </Link>
       ) : (
-        image
+        img
       )}
     </div>
   );

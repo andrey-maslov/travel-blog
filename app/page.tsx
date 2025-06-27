@@ -1,34 +1,36 @@
 import { Metadata } from 'next';
-import { draftMode } from 'next/headers';
 
 import { HeroPost } from '@/components/HeroPost';
 import { Intro } from '@/components/Intro';
-import { getAllPosts } from '@/lib/api';
+import { RichSanityImage } from '@/components/SanityImage';
+import { getAllPosts } from '@/sanity/lib/queries';
 
 import MoreStories from '../components/MoreStories';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Блог о путешествиях, местах и маршрутах — blog.tripplanr',
-    description: 'Городские прогулки, маршруты, краеведение и фото из путешествий. Личный блог создателя сервиса tripplanr.io',  };
+    description:
+      'Городские прогулки, маршруты, краеведение и фото из путешествий. Личный блог создателя сервиса tripplanr.io',
+  };
 }
 
 export default async function Page() {
-  const { isEnabled } = draftMode();
-  const allPosts = await getAllPosts(isEnabled);
+  const allPosts = await getAllPosts();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
 
   const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://blog.tripplanr.io",
-    "name": "Tripplanr Blog",
-    "description": "Городские прогулки, маршруты, краеведение и фото из путешествий. Личный блог создателя сервиса tripplanr.io",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Tripplanr"
-    }
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: 'https://blog.tripplanr.io',
+    name: 'Tripplanr Blog',
+    description:
+      'Городские прогулки, маршруты, краеведение и фото из путешествий. Личный блог создателя сервиса tripplanr.io',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tripplanr',
+    },
   };
 
   return (
@@ -41,13 +43,14 @@ export default async function Page() {
       {heroPost && (
         <HeroPost
           title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
+          coverImage={heroPost.mainImage as RichSanityImage}
+          date={heroPost.publishedAt}
+          // author={heroPost.author}
+          slug={heroPost.slug?.current}
+          excerpt={heroPost?.excerpt}
         />
       )}
+      <hr className="border-gray-200 my-12 lg:my-24" />
       <MoreStories morePosts={morePosts} />
     </div>
   );
