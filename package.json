@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "setup": "node ./lib/setup.js",
-    "typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate"
+    "typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate",
+    "install": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.3.4",
