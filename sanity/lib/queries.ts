@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 import { POST_QUERYResult, POSTS_QUERYResult } from '@/sanity/sanity.types';
 import { defineQuery } from 'groq';
 
-export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)][0...12]{
+export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12]{
   _id, title, slug, mainImage, excerpt, publishedAt
 }`);
 
@@ -25,7 +25,7 @@ export async function getPostAndMorePosts(
 ): Promise<{ post: POST_QUERYResult | null; morePosts: POSTS_QUERYResult }> {
   const post = await getPostBySlug(slug);
 
-  const morePostsQuery = `*[_type == "post" && defined(slug.current) && slug.current != $slug][0...2]{
+  const morePostsQuery = `*[_type == "post" && defined(slug.current) && slug.current != $slug] | order(publishedAt desc)[0...2]{
     _id, title, slug, mainImage, excerpt, publishedAt
   }`;
 

@@ -18,7 +18,7 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
     <section>
       {coverImage && (
         <div className="mb-6 md:mb-10">
-          <CoverImage title={title ?? ''} slug={slug ?? ''} image={coverImage} width={1107} />
+          <CoverImage title={title ?? ''} slug={slug ?? ''} image={coverImage} width={1107} height={600} />
         </div>
       )}
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">

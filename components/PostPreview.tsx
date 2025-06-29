@@ -23,7 +23,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
             slug={slug ?? ''}
             image={coverImage}
             width={481}
-            height={361}
+            height={317}
           />
         </div>
       )}

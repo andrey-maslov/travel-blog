@@ -57,7 +57,7 @@ export default async function PostPage({ params }: PageProps) {
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() || null : null;
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-8">
+    <div className="mx-auto max-w-4xl px-5 py-8">
       <article>
         <h1 className="mb-12 text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
           {post.title}
