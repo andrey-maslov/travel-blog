@@ -38,5 +38,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: 'https://blog.tripplanr.io/posts/nowy-dwor-panelny-raion-wroclava',
+      lastModified: new Date('2025-06-29'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ]
 }

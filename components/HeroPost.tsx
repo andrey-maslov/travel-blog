@@ -17,7 +17,7 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
   return (
     <section>
       {coverImage && (
-        <div className="mb-8 md:mb-16">
+        <div className="mb-6 md:mb-10">
           <CoverImage title={title ?? ''} slug={slug ?? ''} image={coverImage} width={1107} />
         </div>
       )}
@@ -33,7 +33,7 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
           </div>
         </div>
         <div>
-          <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
+          <p className="mb-4 text-md leading-relaxed">{excerpt}</p>
           {/*{author && <Avatar name={author.name} picture={author.picture} />}*/}
         </div>
       </div>
