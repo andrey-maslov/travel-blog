@@ -8,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    {
+      url: 'https://blog.tripplanr.io/about',
+      lastModified: new Date('2025-07-15'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
     // {
     //   url: 'https://blog.tripplanr.io/about',
     //   lastModified: new Date(),
