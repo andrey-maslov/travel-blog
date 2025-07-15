@@ -13,7 +13,7 @@ export default function AboutPage() {
     <>
       <Head>
         <title>Обо мне – Tripplanr Blog</title>
-        <meta name="description" content="Кто стоит за этим блогом'" />
+        <meta name="description" content="Кто стоит за этим блогом" />
       </Head>
 
       <main className="mx-auto max-w-5xl px-5 py-8">
@@ -30,7 +30,7 @@ export default function AboutPage() {
               спальному району и фотографирую то, что считаю интересным.
             </p>
             <p>Этот блог — попытка собрать такие наблюдения в одном месте.</p>
-            <p>Связаться со мной:</p>
+            <p>Мои соцсети:</p>
             <ul>
               {socialLinks.map(({ title, href }) => (
                 <li key={href}>
