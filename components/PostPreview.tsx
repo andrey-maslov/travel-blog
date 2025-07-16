@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import CoverImage from '@/components/CoverImage';
 import DateComponent from '@/components/DateComponent';
+import { PostCategory } from '@/components/PostCategory';
 import { RichSanityImage } from '@/components/SanityImage';
 
 interface Props {
@@ -11,11 +12,16 @@ interface Props {
   excerpt: string | null;
   slug: string | null | undefined;
   author?: any | null;
+  category?: PostCategory;
 }
 
-export function PostPreview({ title, coverImage, date, excerpt, author, slug }: Props) {
+export function PostPreview({ title, coverImage, date, excerpt, category, slug }: Props) {
   return (
     <div>
+      <div className="mb-4 flex justify-between">
+        <div className="min-w-1"><PostCategory category={category}/></div>
+        <DateComponent dateString={date} />
+      </div>
       {coverImage && (
         <div className="mb-5">
           <CoverImage
@@ -32,9 +38,6 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
           {title}
         </Link>
       </h3>
-      <div className="mb-4">
-        <DateComponent dateString={date} />
-      </div>
       <p className="text-md mb-4 leading-relaxed">{excerpt}</p>
       {/*{author && <Avatar name={author.name} picture={author.picture} />}*/}
     </div>

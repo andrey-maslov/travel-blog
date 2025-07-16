@@ -294,6 +294,11 @@ export type POSTS_QUERYResult = Array<{
   } | null;
   excerpt: string | null;
   publishedAt: string | null;
+  tags?: string[];
+  category?: {
+    slug: { _type: 'slug', current: string },
+    title: string
+  },
 }>;
 // Variable: POST_QUERY
 // Query: *[_type == "post" && slug.current == $slug][0]{  title, body, mainImage, seoDescription, excerpt, publishedAt}
@@ -315,6 +320,12 @@ export type POST_QUERYResult = {
   seoDescription: string | null;
   excerpt: string | null;
   publishedAt: string | null;
+  tags?: string[];
+  category?: {
+    slug: { _type: 'slug', current: string },
+    title: string
+  },
+
 } | null;
 
 // Query TypeMap

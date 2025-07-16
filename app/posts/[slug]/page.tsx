@@ -10,6 +10,8 @@ import { PortableTextComponents } from '@/components/PortableTextComponents';
 import { RichSanityImage } from '@/components/SanityImage';
 import { getAllPosts, getPostAndMorePosts, getPostBySlug } from '@/sanity/lib/queries';
 import { urlFor } from '@/sanity/lib/sanityImageUrl';
+import { PostTags } from '@/components/PostTags';
+import { PostCategory } from '@/components/PostCategory';
 
 type MetadataProps = {
   params: Promise<{ slug: string }>;
@@ -56,15 +58,18 @@ export default async function PostPage({ params }: PageProps) {
 
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() || null : null;
 
+  // console.log(post)
+
   return (
     <div className="mx-auto max-w-4xl px-5 py-8">
       <article>
+        <div className="flex justify-between mb-6">
+          <PostCategory category={post.category}/>
+          <Date dateString={post.publishedAt ?? ''} />
+        </div>
         <h1 className="mb-12 text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
           {post.title}
         </h1>
-        <div className="mb-6 text-lg">
-          <Date dateString={post.publishedAt ?? ''} />
-        </div>
         {imageUrl && (
           <div className="mb-8 sm:mx-0 md:mb-16">
             <CoverImage
@@ -79,6 +84,8 @@ export default async function PostPage({ params }: PageProps) {
           {post.body && <PortableText value={post.body} components={PortableTextComponents} />}
         </div>
       </article>
+
+      <PostTags tags={post?.tags}/>
 
       <hr className="border-gray-200 my-12 lg:my-24" />
 

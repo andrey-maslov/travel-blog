@@ -6,6 +6,7 @@ import { RichSanityImage } from '@/components/SanityImage';
 import { getAllPosts } from '@/sanity/lib/queries';
 
 import MoreStories from '../components/MoreStories';
+import { PostsFeed } from '@/components/PostsFeed';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -48,10 +49,11 @@ export default async function Page() {
           // author={heroPost.author}
           slug={heroPost.slug?.current}
           excerpt={heroPost?.excerpt}
+          category={heroPost.category}
         />
       )}
       <hr className="border-gray-200 my-12 lg:my-24" />
-      <MoreStories morePosts={morePosts} />
+      <PostsFeed posts={morePosts} />
     </div>
   );
 }

@@ -1,19 +1,12 @@
-import {defineField, defineType} from 'sanity'
-
-export default defineType({
+export default {
   name: 'category',
-  title: 'Category',
   type: 'document',
+  title: 'Category',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    }),
-  ],
-})
+    { name: 'title', title: 'Title', type: 'string' },
+    {
+      name: 'slug', title: 'Slug', type: 'slug',
+      options: { source: 'title', maxLength: 96 }
+    },
+  ]
+}

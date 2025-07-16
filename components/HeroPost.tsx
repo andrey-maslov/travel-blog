@@ -3,6 +3,7 @@ import Link from 'next/link';
 import CoverImage from '@/components/CoverImage';
 import Date from '@/components/DateComponent';
 import { RichSanityImage } from '@/components/SanityImage';
+import { PostCategory } from '@/components/PostCategory';
 
 interface Props {
   title: string | null;
@@ -11,9 +12,10 @@ interface Props {
   excerpt: string | null;
   slug: string | null | undefined;
   author?: any | null;
+  category?: PostCategory;
 }
 
-export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
+export function HeroPost({ title, coverImage, date, excerpt, slug, category }: Props) {
   return (
     <section>
       {coverImage && (
@@ -28,7 +30,10 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
               {title}
             </Link>
           </h3>
-          <div className="text-md mb-4 md:mb-0">
+          <div className="text-md mb-4 md:mb-0 flex justify-between">
+            <div className="min-w-1">
+              <PostCategory category={category}/>
+            </div>
             <Date dateString={date} />
           </div>
         </div>

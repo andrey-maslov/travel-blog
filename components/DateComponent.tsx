@@ -14,9 +14,9 @@ export default function DateComponent({ dateString, locale = 'ru' }: Props) {
 
   const localeObj = locale === 'ru' ? ru : enUS;
   return (
-    <div className="font-light text-gray-400">
+    <div className="font-light text-gray-500">
       <time dateTime={dateString}>
-        Опубликовано {format(new Date(dateString), 'd MMMM yyyy', { locale: localeObj })}
+        {format(new Date(dateString), 'd MMMM yyyy', { locale: localeObj })}
       </time>
     </div>
   );

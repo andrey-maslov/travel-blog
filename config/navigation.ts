@@ -1,7 +1,7 @@
 export const navigationConfig = {
   headerLinks: [
     // { title: 'Главная', href: '/' },
-    // { title: 'Категории', href: '/categories' },
+    { title: 'Категории', href: '/categories' },
     { title: 'Обо мне', href: '/about' },
   ],
   footerLinks: [

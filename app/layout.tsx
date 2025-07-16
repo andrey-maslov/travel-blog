@@ -28,10 +28,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru" className={inter.variable}>
       <body>
-        <div className="min-h-screen">
+        <div className="flex min-h-screen flex-col">
           <PostHogProvider>
             <Header />
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
             <Footer />
           </PostHogProvider>
         </div>
