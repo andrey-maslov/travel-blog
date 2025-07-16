@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import { PostsFeed } from '@/components/PostsFeed';
 import { getPostsByCategorySlug } from '@/sanity/lib/queries';
 

@@ -19,7 +19,9 @@ export function PostPreview({ title, coverImage, date, excerpt, category, slug }
   return (
     <div>
       <div className="mb-4 flex justify-between">
-        <div className="min-w-1"><PostCategory category={category}/></div>
+        <div className="min-w-1">
+          <PostCategory category={category} />
+        </div>
         <DateComponent dateString={date} />
       </div>
       {coverImage && (
@@ -33,7 +35,7 @@ export function PostPreview({ title, coverImage, date, excerpt, category, slug }
           />
         </div>
       )}
-      <h3 className="leading-tight mb-3 text-2xl font-bold">
+      <h3 className="mb-3 text-2xl leading-tight font-bold">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>

@@ -2,11 +2,10 @@ import { Metadata } from 'next';
 
 import { HeroPost } from '@/components/HeroPost';
 import { Intro } from '@/components/Intro';
+import { PostsFeed } from '@/components/PostsFeed';
 import { RichSanityImage } from '@/components/SanityImage';
 import { getAllPosts } from '@/sanity/lib/queries';
 
-import MoreStories from '../components/MoreStories';
-import { PostsFeed } from '@/components/PostsFeed';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

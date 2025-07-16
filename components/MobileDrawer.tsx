@@ -22,13 +22,14 @@ export const MobileDrawer = () => {
   }, [isOpen]);
 
   return (
-    <div >
+    <div>
       <button onClick={() => setIsOpen(true)} aria-label="Открыть меню" className="p-2">
         <Menu className="text-foreground h-6 w-6" />
       </button>
 
       {isOpen && (
         <div className="min-h-screen">
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity"
             onClick={() => setIsOpen(false)}

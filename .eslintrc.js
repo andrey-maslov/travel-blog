@@ -86,6 +86,7 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": "warn",
+    "jsx-a11y/ no-static-element-interactions": "off"
   },
   overrides: [
     {

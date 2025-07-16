@@ -14,8 +14,7 @@ export const PortableTextComponents = {
         <a
           href={href}
           target={isExternal ? '_blank' : undefined}
-          rel={isExternal ? 'noopener noreferrer' : undefined}
-        >
+          rel={isExternal ? 'noopener noreferrer' : undefined}>
           {children}
         </a>
       );
