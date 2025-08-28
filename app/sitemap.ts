@@ -50,5 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: 'https://blog.tripplanr.io/posts/lagow-zhemchuzhina-lubuskoy-zemli',
+      lastModified: new Date('2025-08-28'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ]
 }
