@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import { PostHogProvider } from '@/app/providers';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { ClarityRouteTracker } from '@/components/ClarityRouteTracker';
 import Script from 'next/script';
 
 const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="flex-grow">{children}</main>
             <Footer />
           </PostHogProvider>
-          <ClarityRouteTracker />
         </div>
       </body>
     </html>
