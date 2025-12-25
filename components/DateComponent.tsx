@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
-import enUS from 'date-fns/locale/en-US';
-import ru from 'date-fns/locale/ru';
+import { enUS, ru } from 'date-fns/locale';
 
 interface Props {
   dateString: string | null;
